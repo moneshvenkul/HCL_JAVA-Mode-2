@@ -1,0 +1,32 @@
+<h1>{{pageHeader}}</h1><br/>
+{{10+20+30}}<br/>
+<img src="./assets/{{imagePath}}"><br/>
+
+<button [disabled]=isDisabled>Click</button>
+<br/>
+
+<table>
+    <tr>
+        <th [attr.colspan]="columnSpan">
+            Employee Details 
+        </th>
+    </tr>
+    <tr>
+        <td>{{event.id}}</td>
+        <td>{{event.name}}</td>
+        <td>{{event.price}}</td>
+        <td>{{event.location}}</td>
+    </tr>
+</table>
+
+<br/>
+
+<button class="colorClass" [class]="classesToApply">Click Me!!!</button>
+
+<br/>
+
+<button style="color:blue" [style.fontWeight]="isBold?'bold':'normal'">Button 1</button><br/>
+<button style="color:aqua" [style.font-size.px]="fontsize">Button 2</button>
+<br/>
+<button (click)="add()">Add Here</button>
+<app-employee></app-employee>

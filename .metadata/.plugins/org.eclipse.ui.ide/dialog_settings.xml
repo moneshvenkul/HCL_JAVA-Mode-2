@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\HCL\Java Courses\Spring &amp; Hibernate for Beginners (includes Spring Boot)\12. Spring MVC - Creating Controllers and Views\12.1 solution-code-spring-mvc-adding-data-to-the-spring-model.zip\solution-code-spring-mvc-adding-data-to-the-spring-model"/>
+		</list>
+	</section>
+</section>

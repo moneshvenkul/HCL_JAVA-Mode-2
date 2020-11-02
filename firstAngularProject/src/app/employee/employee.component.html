@@ -1,0 +1,18 @@
+<div>
+  <h1>Upcoming Employee Details</h1>
+  <div class="well hoverwell thumbnail">
+    <h2>{{ emp.id }}</h2>
+    <h2>{{ emp.name }}</h2>
+    <div>Date : {{ emp.date }}</div>
+    <div>Gender : {{ emp.gender }}</div>
+    <div>Salary : {{ emp.salary }}</div>
+    <div *ngIf="showDetails">
+      Skill Information:
+      <div *ngFor="let empl of emp.skill">
+        {{empl.skill_id}}---{{empl.skill_name}}  
+    </div>
+  </div>
+  <button (click)="toggleDetails()">
+    {{ showDetails ? "Hide" : "Show" }} Details
+  </button>
+</div>
