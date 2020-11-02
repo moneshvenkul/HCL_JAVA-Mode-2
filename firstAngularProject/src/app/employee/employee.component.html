@@ -1,3 +1,4 @@
+<!--
 <div>
   <h1>Upcoming Employee Details</h1>
   <div class="well hoverwell thumbnail">
@@ -8,11 +9,49 @@
     <div>Salary : {{ emp.salary }}</div>
     <div *ngIf="showDetails">
       Skill Information:
-      <div *ngFor="let empl of emp.skill">
-        {{empl.skill_id}}---{{empl.skill_name}}  
+      <div *ngFor="let empl of emp.skill" [ngSwitch]="emp.gender">
+        {{ empl.skill_id }}---{{ empl.skill_name }}
+        <div *ngSwitchCase="'male'" style="color: blue;">
+          {{empl.skill_id}} --{{empl.skill_name}}
+        </div>
+       <div *ngSwitchCase="'female'" style="color:yellow;">
+          {{empl.skill_id}} --{{empl.skill_name}}
+      </div>
+      <div *ngSwitchCase="'other'" style="color:red;">
+          {{empl.skill_id}} --{{empl.skill_name}}
+      </div>
+        
+      </div>
     </div>
+    <button (click)="toggleDetails()">
+      {{ showDetails ? "Hide" : "Show" }} Details
+    </button>
   </div>
-  <button (click)="toggleDetails()">
-    {{ showDetails ? "Hide" : "Show" }} Details
-  </button>
 </div>
+-->
+
+<table border="1">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Salary</th>
+    <th>Gender</th>
+  </tr>
+  <tr *ngFor="let emp of empl">
+    <td>{{ emp.id }}</td>
+    <td>{{ emp.name | uppercase | employeeTitle:emp.gender }}</td>
+    <td>{{ emp.date | date: "longDate" }}</td>
+    <td>{{ emp.salary | currency: "INR" }}</td>
+    <td>{{ emp.gender }}</td>
+  </tr>
+</table>
+
+
+{{454.78967 | number:'3.4-4'}} <br/>
+{{0.54565 | percent}} <br/>
+{{jsonVal |json}} <br/>
+{{months | slice:2:6}} <br/>
+
+
+
