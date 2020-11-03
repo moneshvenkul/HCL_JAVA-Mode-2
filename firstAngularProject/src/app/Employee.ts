@@ -6,5 +6,9 @@ export interface Employee {
     date : string;
     gender : string;
     salary : number;
+    permanent : string;
+    deptId : number;
+    deptName : string;
     skill : Skill[];
+    dateOfBirth : Date;
 }

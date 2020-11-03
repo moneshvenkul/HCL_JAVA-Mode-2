@@ -13,17 +13,45 @@ export class EmployeeComponent implements OnInit {
     date: '17/07/1999',
     gender: 'male',
     salary: 90000,
+    permanent:'yes',
+    deptId:1,
+    deptName:'Payroll',
     skill: [
-      { skill_id: 100, skill_name: 'Java' },
-      { skill_id: 101, skill_name: 'C++' },
-      { skill_id: 102, skill_name: 'PHP' },
+      { skill_id: 1, skill_name: 'HTML' },
+      { skill_id: 2, skill_name: 'CSS' },
+      { skill_id: 3, skill_name: 'JAVASCRIPT' },
     ],
+    dateOfBirth: new Date('12/31/2000')
   };
 
-  showDetails: boolean = false;
+  showDetails1: boolean = false;
 
-  toggleDetails(): void {
-    this.showDetails = !this.showDetails;
+  toggleDetails1(): void {
+    this.showDetails1 = !this.showDetails1;
+  }
+
+  showDetails2: boolean = false;
+
+  toggleDetails2(): void {
+    this.showDetails2 = !this.showDetails2;
+  }
+
+  showDetails3: boolean = false;
+
+  toggleDetails3(): void {
+    this.showDetails3 = !this.showDetails3;
+  }
+
+  showDetails4: boolean = false;
+
+  toggleDetails4(): void {
+    this.showDetails4 = !this.showDetails4;
+  }
+
+  showDetails5: boolean = false;
+
+  toggleDetails5(): void {
+    this.showDetails5 = !this.showDetails5;
   }
 
   jsonVal = { name: "Ram", age: 25, address: "Chennai" };
@@ -47,7 +75,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  empl: Employee[] = [
+  /* empl: Employee[] = [
     {
       id: 1,
       name: "Monesh",
@@ -80,5 +108,5 @@ export class EmployeeComponent implements OnInit {
       salary: 6000,
       skill: [{ skill_id: 1, skill_name: 'js' }],
     },
-  ];
+  ]; */
 }

@@ -29,8 +29,119 @@
   </div>
 </div>
 -->
+<br />
+<h1>2. Employee Details</h1>
+<h4>id :{{ emp.id }}</h4>
+<h4>name :{{ emp.name }}</h4>
+<h4>salary:{{ emp.salary }}</h4>
 
-<table border="1">
+<br />
+<div>
+  <h1>3. Upcoming Employee Details</h1>
+  <div class="well hoverwell thumbnail" *ngIf="showDetails1">
+    <div>Id : {{ emp.id }}</div>
+    <div>Name : {{ emp.name }}</div>
+    <div>Salary : {{ emp.salary }}</div>
+    <div>Permanent : {{ emp.permanent }}</div>
+  </div>
+  <button (click)="toggleDetails1()">
+    {{ showDetails1 ? "Hide" : "Show" }} Employee Details
+  </button>
+</div>
+
+<br />
+<div>
+  <h1>4. Upcoming Employee Details with Department</h1>
+  <div class="well hoverwell thumbnail" *ngIf="showDetails2">
+    <div>Id : {{ emp.id }}</div>
+    <div>Name : {{ emp.name }}</div>
+    <div>Salary : {{ emp.salary }}</div>
+    <div>Permanent : {{ emp.permanent }}</div>
+    <div>Department Id : {{ emp.deptId }}</div>
+    <div>Department Name : {{ emp.deptName }}</div>
+  </div>
+  <button (click)="toggleDetails2()">
+    {{ showDetails2 ? "Hide" : "Show" }} Employee Details with Department
+  </button>
+</div>
+
+<br />
+<div>
+  <h1>5. Upcoming Employee Details with Department and Skills</h1>
+  <div class="well hoverwell thumbnail" *ngIf="showDetails3">
+    <div>Id : {{ emp.id }}</div>
+    <div>Name : {{ emp.name }}</div>
+    <div>Salary : {{ emp.salary }}</div>
+    <div>Permanent : {{ emp.permanent }}</div>
+    <div>Department Id : {{ emp.deptId }}</div>
+    <div>Department Name : {{ emp.deptName }}</div>
+    <div>
+      Skill Information:
+      <div *ngFor="let empl of emp.skill">
+        {{ empl.skill_id }}---{{ empl.skill_name }}
+      </div>
+    </div>
+  </div>
+
+  <button (click)="toggleDetails3()">
+    {{ showDetails3 ? "Hide" : "Show" }} Employee Details with Department and
+    skills
+  </button>
+</div>
+
+<br />
+<div>
+  <h1>6. Upcoming Employee Details with Department and Skills and DOB</h1>
+  <div class="well hoverwell thumbnail" *ngIf="showDetails4">
+    <div>Id : {{ emp.id }}</div>
+    <div>Name : {{ emp.name }}</div>
+    <div>Salary : {{ emp.salary }}</div>
+    <div>Permanent : {{ emp.permanent }}</div>
+    <div>Department Id : {{ emp.deptId }}</div>
+    <div>Department Name : {{ emp.deptName }}</div>
+    <div>
+      Skill Information:
+      <div *ngFor="let empl of emp.skill">
+        {{ empl.skill_id }}---{{ empl.skill_name }}
+      </div>
+    </div>
+    <div>Date of Birth : {{ emp.dateOfBirth }}</div>
+  </div>
+
+  <button (click)="toggleDetails4()">
+    {{ showDetails4 ? "Hide" : "Show" }} Employee Details with Department and
+    skills and DOB
+  </button>
+</div>
+
+<br />
+<div>
+  <h1>
+    7. Upcoming Employee Details with Department and Skills and DOB (Formatted)
+  </h1>
+  <div class="well hoverwell thumbnail" *ngIf="showDetails5">
+    <div>Id : {{ emp.id }}</div>
+    <div>Name : {{ emp.name }}</div>
+    <div>Salary : {{ emp.salary | currency: "INR" }}</div>
+    <div>Permanent : {{ emp.permanent }}</div>
+    <div>Department Id : {{ emp.deptId }}</div>
+    <div>Department Name : {{ emp.deptName }}</div>
+    <div>
+      Skill Information:
+      <div *ngFor="let empl of emp.skill">
+        {{ empl.skill_id }}---{{ empl.skill_name }}
+      </div>
+    </div>
+    <div>Date of Birth : {{ emp.dateOfBirth | date: "longDate" }}</div>
+  </div>
+
+  <button (click)="toggleDetails5()">
+    {{ showDetails5 ? "Hide" : "Show" }} Employee Details with Department and
+    skills and DOB (Formatted)
+  </button>
+</div>
+
+<!-- <table border="1">
   <tr>
     <th>Id</th>
     <th>Name</th>
@@ -45,13 +156,10 @@
     <td>{{ emp.salary | currency: "INR" }}</td>
     <td>{{ emp.gender }}</td>
   </tr>
-</table>
+</table> -->
 
-
-{{454.78967 | number:'3.4-4'}} <br/>
-{{0.54565 | percent}} <br/>
-{{jsonVal |json}} <br/>
-{{months | slice:2:6}} <br/>
-
-
-
+<!-- {{ 454.78967 | number: "3.4-4" }} <br />
+{{ 0.54565 | percent }} <br />
+{{ jsonVal | json }} <br />
+{{ months | slice: 2:6 }} <br />
+ -->

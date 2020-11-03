@@ -21,6 +21,7 @@ classesToApply : string = "italicsClass boldClass";
 
 isBold  :boolean =true;
 fontsize: number = 30;
+favoriteMovie :string =" Lord of the Rings";
 
 add():void{
   console.log("Button Clicked");
