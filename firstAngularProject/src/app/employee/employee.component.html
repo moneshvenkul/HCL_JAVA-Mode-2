@@ -49,6 +49,7 @@
   </button>
 </div>
 
+
 <br />
 <div>
   <h1>4. Upcoming Employee Details with Department</h1>
@@ -56,9 +57,17 @@
     <div>Id : {{ emp.id }}</div>
     <div>Name : {{ emp.name }}</div>
     <div>Salary : {{ emp.salary }}</div>
-    <div>Permanent : {{ emp.permanent }}</div>
-    <div>Department Id : {{ emp.deptId }}</div>
-    <div>Department Name : {{ emp.deptName }}</div>
+    <ng-template [ngIf]="emp.permanent" [ngIfElse]="loading">
+      <div>
+        Permanent : Yes
+      </div>
+     </ng-template>
+     
+     <ng-template #loading>
+      <div>Permanent : No</div>
+     </ng-template>
+    <div>Department Id : {{ emp.dept.deptId }}</div>
+    <div>Department Name : {{ emp.dept.deptName }}</div>
   </div>
   <button (click)="toggleDetails2()">
     {{ showDetails2 ? "Hide" : "Show" }} Employee Details with Department
@@ -72,9 +81,17 @@
     <div>Id : {{ emp.id }}</div>
     <div>Name : {{ emp.name }}</div>
     <div>Salary : {{ emp.salary }}</div>
-    <div>Permanent : {{ emp.permanent }}</div>
-    <div>Department Id : {{ emp.deptId }}</div>
-    <div>Department Name : {{ emp.deptName }}</div>
+    <ng-template [ngIf]="emp.permanent" [ngIfElse]="loading">
+      <div>
+        Permanent : Yes
+      </div>
+     </ng-template>
+     
+     <ng-template #loading>
+      <div>Permanent : No</div>
+     </ng-template>
+    <div>Department Id : {{ emp.dept.deptId }}</div>
+    <div>Department Name : {{ emp.dept.deptName }}</div>
     <div>
       Skill Information:
       <div *ngFor="let empl of emp.skill">
@@ -96,9 +113,17 @@
     <div>Id : {{ emp.id }}</div>
     <div>Name : {{ emp.name }}</div>
     <div>Salary : {{ emp.salary }}</div>
-    <div>Permanent : {{ emp.permanent }}</div>
-    <div>Department Id : {{ emp.deptId }}</div>
-    <div>Department Name : {{ emp.deptName }}</div>
+    <ng-template [ngIf]="emp.permanent" [ngIfElse]="loading">
+      <div>
+        Permanent : Yes
+      </div>
+     </ng-template>
+     
+     <ng-template #loading>
+      <div>Permanent : No</div>
+     </ng-template>
+    <div>Department Id : {{ emp.dept.deptId }}</div>
+    <div>Department Name : {{ emp.dept.deptName }}</div>
     <div>
       Skill Information:
       <div *ngFor="let empl of emp.skill">
@@ -123,9 +148,17 @@
     <div>Id : {{ emp.id }}</div>
     <div>Name : {{ emp.name }}</div>
     <div>Salary : {{ emp.salary | currency: "INR" }}</div>
-    <div>Permanent : {{ emp.permanent }}</div>
-    <div>Department Id : {{ emp.deptId }}</div>
-    <div>Department Name : {{ emp.deptName }}</div>
+    <ng-template [ngIf]="emp.permanent" [ngIfElse]="loading">
+      <div>
+        Permanent : Yes
+      </div>
+     </ng-template>
+     
+     <ng-template #loading>
+      <div>Permanent : No</div>
+     </ng-template>
+    <div>Department Id : {{ emp.dept.deptId }}</div>
+    <div>Department Name : {{ emp.dept.deptName }}</div>
     <div>
       Skill Information:
       <div *ngFor="let empl of emp.skill">

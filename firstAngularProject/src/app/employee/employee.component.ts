@@ -13,9 +13,8 @@ export class EmployeeComponent implements OnInit {
     date: '17/07/1999',
     gender: 'male',
     salary: 90000,
-    permanent:'yes',
-    deptId:1,
-    deptName:'Payroll',
+    permanent:true,
+    dept:{deptId:1,deptName:'Payroll'},
     skill: [
       { skill_id: 1, skill_name: 'HTML' },
       { skill_id: 2, skill_name: 'CSS' },

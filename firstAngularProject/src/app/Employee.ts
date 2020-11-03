@@ -1,4 +1,5 @@
 import { Skill } from "./Skill";
+import { Department } from "./Department";
 
 export interface Employee {
     id : number;
@@ -6,9 +7,8 @@ export interface Employee {
     date : string;
     gender : string;
     salary : number;
-    permanent : string;
-    deptId : number;
-    deptName : string;
+    permanent : boolean;
+    dept : Department;
     skill : Skill[];
     dateOfBirth : Date;
 }
