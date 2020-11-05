@@ -42,7 +42,15 @@
     <div>Id : {{ emp.id }}</div>
     <div>Name : {{ emp.name }}</div>
     <div>Salary : {{ emp.salary }}</div>
-    <div>Permanent : {{ emp.permanent }}</div>
+    <ng-template [ngIf]="emp.permanent" [ngIfElse]="loading">
+      <div>
+        Permanent : Yes
+      </div>
+     </ng-template>
+     
+     <ng-template #loading>
+      <div>Permanent : No</div>
+     </ng-template>
   </div>
   <button (click)="toggleDetails1()">
     {{ showDetails1 ? "Hide" : "Show" }} Employee Details
