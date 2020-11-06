@@ -1,12 +1,13 @@
 package com.test;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -15,7 +16,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 //SpringJunit4Ruinner
 //SpringRunner-->Junit5
-@RunWith(SpringRunner.class) // Junit 5
+//@RunWith(SpringRunner.class) // Junit 5
+@ExtendWith(SpringExtension.class)//Junit 5
 @SpringBootTest // Testcase inside Spring Boot
 @ContextConfiguration(classes = TestBeanConfig.class) // componentscan
 public class LoginControllerTest {
@@ -23,7 +25,7 @@ public class LoginControllerTest {
 	WebApplicationContext context;
 	private MockMvc mvc;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		mvc = MockMvcBuilders.webAppContextSetup(context).build();
 	}
