@@ -36,7 +36,7 @@
 <h4>salary:{{ emp.salary }}</h4>
 
 <br />
-<div>
+<!-- <div>
   <h1>3. Upcoming Employee Details</h1>
   <div class="well hoverwell thumbnail" *ngIf="showDetails1">
     <div>Id : {{ emp.id }}</div>
@@ -156,7 +156,7 @@
     <div>Id : {{ emp.id }}</div>
     <div>Name : {{ emp.name }}</div>
     <div>Salary : {{ emp.salary | currency: "INR" }}</div>
-    <ng-template [ngIf]="emp.permanent" [ngIfElse]="loading">
+    <ng-template [ngIf]="true" [ngIfElse]="loading">
       <div>
         Permanent : Yes
       </div>
@@ -180,7 +180,7 @@
     {{ showDetails5 ? "Hide" : "Show" }} Employee Details with Department and
     skills and DOB (Formatted)
   </button>
-</div>
+</div> -->
 
 <!-- <table border="1">
   <tr>

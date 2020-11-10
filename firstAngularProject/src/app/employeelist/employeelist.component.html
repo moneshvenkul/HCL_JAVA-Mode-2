@@ -1,0 +1,29 @@
+<p>employeelist works!</p>
+
+<app-employeecount [all]="getTotalEmployeeCount()" [male]="getTotalMaleCount()" [female]="getTotalFemaleCount()"
+></app-employeecount>
+<br/>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Gender</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let emp of empl">
+      <td>{{ emp.id }}</td>
+      <td>{{ emp.name | uppercase | employeeTitle: emp.gender }}</td>
+      <td>{{ emp.date | date: "fullDate" }}</td>
+      <td>{{ emp.gender }}</td>
+      <td>{{ emp.salary | currency: "INR" }}</td>
+    </tr>
+    <tr *ngIf="!empl || empl.length == 0">
+      <td colspan="5">No employees to display</td>
+    </tr>
+  </tbody>
+</table>
