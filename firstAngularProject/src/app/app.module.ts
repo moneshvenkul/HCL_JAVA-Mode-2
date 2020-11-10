@@ -10,6 +10,8 @@ import { HomepipePipe } from './homepipe.pipe';
 import { ExampleComponent } from './example/example.component';
 import { EmployeelistComponent } from './employeelist/employeelist.component';
 import { EmployeecountComponent } from './employeecount/employeecount.component';
+import { FormsModule } from '@angular/forms';
+import { LifecycleComponent } from './lifecycle/lifecycle.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { EmployeecountComponent } from './employeecount/employeecount.component'
     HomepipePipe,
     ExampleComponent,
     EmployeelistComponent,
-    EmployeecountComponent
+    EmployeecountComponent,
+    LifecycleComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

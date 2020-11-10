@@ -1,8 +1,12 @@
 <p>employeelist works!</p>
 
-<app-employeecount [all]="getTotalEmployeeCount()" [male]="getTotalMaleCount()" [female]="getTotalFemaleCount()"
+<app-employeecount
+  [all]="getTotalEmployeeCount()"
+  [male]="getTotalMaleCount()"
+  [female]="getTotalFemaleCount()"
+  (countRadioButtonSelectionChanged)="onEmployeeCountRadioButtonChange($event)"
 ></app-employeecount>
-<br/>
+<br />
 <table border="1">
   <thead>
     <tr>
@@ -15,13 +19,15 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let emp of empl">
+    <ng-container *ngFor="let emp of empl">
+    <tr *ngIf="selectedEmployeeCountRadioButton=='All' || selectedEmployeeCountRadioButton==emp.gender">
       <td>{{ emp.id }}</td>
       <td>{{ emp.name | uppercase | employeeTitle: emp.gender }}</td>
       <td>{{ emp.date | date: "fullDate" }}</td>
       <td>{{ emp.gender }}</td>
       <td>{{ emp.salary | currency: "INR" }}</td>
     </tr>
+  </ng-container>
     <tr *ngIf="!empl || empl.length == 0">
       <td colspan="5">No employees to display</td>
     </tr>
