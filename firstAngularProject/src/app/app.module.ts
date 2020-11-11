@@ -12,6 +12,9 @@ import { EmployeelistComponent } from './employeelist/employeelist.component';
 import { EmployeecountComponent } from './employeecount/employeecount.component';
 import { FormsModule } from '@angular/forms';
 import { LifecycleComponent } from './lifecycle/lifecycle.component';
+import { ViewEmpComponent } from './view-emp/view-emp.component';
+import { EditEmpComponent } from './edit-emp/edit-emp.component';
+import { QuantityIncrementComponent } from './quantity-increment/quantity-increment.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { LifecycleComponent } from './lifecycle/lifecycle.component';
     ExampleComponent,
     EmployeelistComponent,
     EmployeecountComponent,
-    LifecycleComponent
+    LifecycleComponent,
+    ViewEmpComponent,
+    EditEmpComponent,
+    QuantityIncrementComponent
   ],
   imports: [
     BrowserModule,

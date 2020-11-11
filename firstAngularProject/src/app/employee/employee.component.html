@@ -1,4 +1,4 @@
-<!--
+<!-- 
 <div>
   <h1>Upcoming Employee Details</h1>
   <div class="well hoverwell thumbnail">
@@ -7,7 +7,7 @@
     <div>Date : {{ emp.date }}</div>
     <div>Gender : {{ emp.gender }}</div>
     <div>Salary : {{ emp.salary }}</div>
-    <div *ngIf="showDetails">
+    <div *ngIf="true">
       Skill Information:
       <div *ngFor="let empl of emp.skill" [ngSwitch]="emp.gender">
         {{ empl.skill_id }}---{{ empl.skill_name }}
@@ -23,19 +23,16 @@
         
       </div>
     </div>
-    <button (click)="toggleDetails()">
-      {{ showDetails ? "Hide" : "Show" }} Details
-    </button>
   </div>
-</div>
--->
-<br />
+</div> -->
+
+<!-- <br />
 <h1>2. Employee Details</h1>
 <h4>id :{{ emp.id }}</h4>
 <h4>name :{{ emp.name }}</h4>
 <h4>salary:{{ emp.salary }}</h4>
 
-<br />
+<br /> -->
 <!-- <div>
   <h1>3. Upcoming Employee Details</h1>
   <div class="well hoverwell thumbnail" *ngIf="showDetails1">
@@ -146,13 +143,10 @@
     skills and DOB
   </button>
 </div>
-
+-->
 <br />
 <div>
-  <h1>
-    7. Upcoming Employee Details with Department and Skills and DOB (Formatted)
-  </h1>
-  <div class="well hoverwell thumbnail" *ngIf="showDetails5">
+  <div class="well hoverwell thumbnail" *ngIf="true">
     <div>Id : {{ emp.id }}</div>
     <div>Name : {{ emp.name }}</div>
     <div>Salary : {{ emp.salary | currency: "INR" }}</div>
@@ -167,6 +161,7 @@
      </ng-template>
     <div>Department Id : {{ emp.dept.deptId }}</div>
     <div>Department Name : {{ emp.dept.deptName }}</div>
+    <div>asdad</div>
     <div>
       Skill Information:
       <div *ngFor="let empl of emp.skill">
@@ -176,11 +171,11 @@
     <div>Date of Birth : {{ emp.dateOfBirth | date: "longDate" }}</div>
   </div>
 
-  <button (click)="toggleDetails5()">
+  <!-- <button (click)="toggleDetails5()">
     {{ showDetails5 ? "Hide" : "Show" }} Employee Details with Department and
     skills and DOB (Formatted)
-  </button>
-</div> -->
+  </button> -->
+</div> 
 
 <!-- <table border="1">
   <tr>

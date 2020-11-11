@@ -7,8 +7,8 @@ export interface Employee {
     date : string;
     gender : string;
     salary : number;
-    // permanent : boolean;
-    // dept : Department;
+    permanent : boolean;
+    dept : Department;
     skill : Skill[];
-    // dateOfBirth : Date;
+    dateOfBirth : Date;
 }

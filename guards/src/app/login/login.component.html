@@ -1,0 +1,59 @@
+<p>login works!</p>
+<head>
+    
+    <style>
+ 
+        .navbar {
+            background-color: #ff6347;
+        }
+ 
+        .button {
+            background-color: #ff6347
+        }
+ 
+        .footer {
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            bottom: 0px;
+            background-color: #ff6347;
+            color: white;
+        }
+ 
+        header {
+            height: 70px;
+        }
+    </style>
+</head>
+ 
+<body>
+        <div class="row mt-5">
+ 
+            <div class="col mx-auto">
+                <div class="card mx-auto" style="width:400px;">
+                    <div class="card-body">
+                        <h2>Login</h2>
+ 
+                        <form (ngSubmit)="onSubmit(username.value,password.value)" #loginForm="ngForm">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" #username>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" #password>
+                            </div>
+                            <span>
+                                <button type="submit" class="btn btn-primary" style="background-color:#ff6347">Login</button>
+                               
+                            </span>
+                            <br/>
+                            <span style="color: red">{{msg}}</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+ 
+</body>

@@ -1,0 +1,27 @@
+<br />
+<div>
+  <h1>Employee Details</h1>
+  <div class="well hoverwell thumbnail" *ngIf="true">
+    <div><b>ID:</b> {{ emp.id }}</div>
+    <div><b>Name:</b> {{ emp.name }}</div>
+    <div><b>Salary:</b> {{ emp.salary | currency: "INR" }}</div>
+    <ng-template [ngIf]="true" [ngIfElse]="loading">
+      <div><b>Permanent:</b>Yes
+      </div>
+     </ng-template>
+     
+     <ng-template #loading>
+      <div><b>Permanent:</b>No</div>
+     </ng-template>
+    <div><b>Department Id:</b> {{ emp.dept.deptId }}</div>
+    <div><b>Department Name:</b> {{ emp.dept.deptName }}</div>
+    <div><b>Skills</b></div>
+    <div>
+      <b>Skill Information:</b>
+      <div *ngFor="let empl of emp.skill">
+        {{ empl.skill_id }}---{{ empl.skill_name }}
+      </div>
+    </div>
+    <div><b>Date of Birth:</b> {{ emp.dateOfBirth | date: "longDate" }}</div>
+  </div>
+</div>

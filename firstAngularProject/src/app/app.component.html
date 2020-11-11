@@ -33,10 +33,35 @@
 -->
 
 <!-- <h1>1. {{favoriteMovie}}</h1>
-
-<app-employee></app-employee> -->
+-->
+<!-- <app-employee></app-employee>  -->
 <!-- <app-home></app-home> -->
 
 <!-- <app-employeelist></app-employeelist> -->
 
-<app-lifecycle></app-lifecycle>
+<!-- <app-lifecycle></app-lifecycle> -->
+
+<!-- <app-view-emp></app-view-emp> -->
+
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <ul class="nav nav-tabs">
+          <li><h1><b>Angular Learning</b></h1></li>  
+          <li role="presentation" routerLinkActive="active"><a routerLink="/view">View Employee</a></li>
+          <li role="presentation" routerLinkActive="active"><a routerLink="/edit">Edit Employee</a></li>
+          <li role="presentation" routerLinkActive="active"><a routerLink="/increment">Quantity Increment</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+
+
+
+
