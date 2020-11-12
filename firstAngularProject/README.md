@@ -1,3 +1,24 @@
+# Assignment 1
+
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment1_Output1.JPG)
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment1_Output2.JPG)
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment1_Output3.JPG)
+
+# Assignment 2
+
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment2_Output1.JPG)
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment2_Output2.JPG)
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment2_Output3.JPG)
+
+# Assignment 3
+
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment3_Output1.JPG)
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment3_Output2.JPG)
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment3_Output3.JPG)
+![alt text](https://github.com/moneshvenkul/HCL_JAVA-Mode-2/blob/master/firstAngularProject/src/assets/Assignment3_Output4.JPG)
+
+
+
 # FirstAngularProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.

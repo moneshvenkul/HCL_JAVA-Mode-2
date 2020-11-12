@@ -3,14 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TemplatedrivenComponent } from './templatedriven/templatedriven.component';
+import { FormsModule } from '@angular/forms';
+import { RegsuccessComponent } from './regsuccess/regsuccess.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TemplatedrivenComponent,
+    RegsuccessComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

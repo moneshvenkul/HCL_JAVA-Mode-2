@@ -15,6 +15,7 @@ import { LifecycleComponent } from './lifecycle/lifecycle.component';
 import { ViewEmpComponent } from './view-emp/view-emp.component';
 import { EditEmpComponent } from './edit-emp/edit-emp.component';
 import { QuantityIncrementComponent } from './quantity-increment/quantity-increment.component';
+import { EditEmpTemplateDrivenComponent } from './edit-emp-template-driven/edit-emp-template-driven.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { QuantityIncrementComponent } from './quantity-increment/quantity-increm
     LifecycleComponent,
     ViewEmpComponent,
     EditEmpComponent,
-    QuantityIncrementComponent
+    QuantityIncrementComponent,
+    EditEmpTemplateDrivenComponent,
   ],
   imports: [
     BrowserModule,
