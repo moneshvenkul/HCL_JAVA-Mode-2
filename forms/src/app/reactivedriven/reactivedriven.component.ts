@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PasswordValidator } from '../password.validator';
+import { ForbiddenNameValidator } from '../username-validator';
  
 @Component({
   selector: 'app-reactivedriven',
@@ -9,16 +11,31 @@ import { PasswordValidator } from '../password.validator';
 })
 export class ReactivedrivenComponent implements OnInit {
  
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private route:Router) { }
  
   registrationForm: FormGroup;
 
+  get alternateEmails(){
+    return this.registrationForm.get('alternateEmails') as FormArray;
+  }
 
+  addAlternateEmail(){
+    this.alternateEmails.push(this.fb.control(''));
+  }
+
+  submitted=false;
+  onSubmit(){
+    console.log("clicked");
+    this.submitted = true;
+    if(this.submitted==true){
+      this.route.navigate(['/regSuccess']);
+    }
+  }
  
   ngOnInit(): void {
     this.registrationForm=this.fb.group({
  
-      username:['Raj',[Validators.required,Validators.minLength(3)]],
+      username:['Raj',[Validators.required,Validators.minLength(3),ForbiddenNameValidator]],
       email:[''],
       subscribe:[false],
       password:[''],
@@ -27,7 +44,8 @@ export class ReactivedrivenComponent implements OnInit {
         city:['chennai'],
         state:['tamilnaidu'],
         postalCode:['76999']
-      })
+      }),
+      alternateEmails:this.fb.array([])
     },{validator:PasswordValidator});
  
     this.registrationForm.get('subscribe').valueChanges

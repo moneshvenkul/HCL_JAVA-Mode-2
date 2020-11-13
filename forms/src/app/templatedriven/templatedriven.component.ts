@@ -26,4 +26,13 @@ export class TemplatedrivenComponent implements OnInit {
     }​​​​​​​
   }​​​​​​​
 
+  topicHasError=true;
+  validateTopic(value){
+    if(value==='default'){
+      this.topicHasError=true;
+    }else{
+      this.topicHasError=false;
+    }
+  }
+
 }
