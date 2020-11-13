@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'forms';
 
   constructor(private route: Router){
-    this.route.navigate(['/template'])
+    // this.route.navigate(['/template'])
+    this.route.navigate(['/reactive'])
   }
 }

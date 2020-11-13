@@ -2,12 +2,16 @@ import { Template } from '@angular/compiler/src/render3/r3_ast';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { ReactivedrivenComponent } from './reactivedriven/reactivedriven.component';
 import { RegsuccessComponent } from './regsuccess/regsuccess.component';
 import { TemplatedrivenComponent } from './templatedriven/templatedriven.component';
 
 const routes: Routes = [
   {
     path:'regSuccess',component:RegsuccessComponent
+  },
+  {
+    path:'reactive',component:ReactivedrivenComponent
   },
   {
     path:'template',component:TemplatedrivenComponent
