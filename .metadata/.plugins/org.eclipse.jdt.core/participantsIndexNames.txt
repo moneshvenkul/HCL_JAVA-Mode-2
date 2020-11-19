@@ -7,6 +7,8 @@ D:\Programs\HCL_JAVA-Mode-2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearc
 \solution-code-spring-mvc-adding-data-to-the-spring-model\src
 D:\Programs\HCL_JAVA-Mode-2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1857703622.index
 \SpringBootBasicApplication\src\main\java
+D:\Programs\HCL_JAVA-Mode-2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2296751216.index
+\SpringBoot3\src\main\java
 D:\Programs\HCL_JAVA-Mode-2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2474658544.index
 \SpringSecurity\src\main\java
 D:\Programs\HCL_JAVA-Mode-2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3792174128.index
