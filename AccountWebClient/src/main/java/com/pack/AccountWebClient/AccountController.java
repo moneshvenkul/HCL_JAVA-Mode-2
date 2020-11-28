@@ -26,5 +26,4 @@ public class AccountController {
         model.addAttribute("account", accountRepository.getAccount(id));
         return "accountDetails";
     }
-
 }

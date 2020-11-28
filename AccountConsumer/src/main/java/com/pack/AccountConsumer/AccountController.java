@@ -9,32 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AccountController {
-
-//protected Logger logger = Logger
-// .getLogger (AccountController.class.getName());
-
 	@Autowired
 	AccountRepository accountRepository;
-
 	@RequestMapping("/accounts")
-	public Account[] all() {
-
-//logger.info("accounts-microservice all() invoked");
-		List<Account> accounts = (List<Account>) accountRepository.findAll();
-
-//logger.info("accounts-microservice all() found: + 
-		return accounts.toArray(new Account[accounts.size()]);
-	}
-
-	@RequestMapping("/accounts/{id}")
-	public Account byId(@PathVariable("id") Integer id) {
-
-//logger.info("accounts-microservice byId() invoked: " + id);
-
-		Account account = accountRepository.findOne(id);
-//logger.info("accounts-microservice byId() found: + account);
-
-		return account;
-
-	}
+    public Account[] all() {
+        List<Account> accounts = (List<Account>) accountRepository.findAll();
+        return accounts.toArray(new Account[accounts.size()]);
+    }
+   
+    @RequestMapping("/accounts/{id}")
+    public Account byId(@PathVariable("id") Integer id) {
+        Account account= accountRepository.findOne(id);
+        return account;
+    }
 }

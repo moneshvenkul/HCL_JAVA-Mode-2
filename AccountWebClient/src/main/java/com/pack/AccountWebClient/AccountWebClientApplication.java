@@ -14,7 +14,6 @@ public class AccountWebClientApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AccountWebClientApplication.class, args);
 	}
-	
 	public static final String ACCOUNTS_SERVICE_URL = "http://ACCOUNTS-CONSUMER";
 
 	 
