@@ -1,0 +1,16 @@
+<div *ngIf="customer">
+    <div>
+        <label>Name: </label> {{customer.name}}
+    </div>
+    <div>
+        <label>Age: </label> {{customer.age}}
+    </div>
+    <div>
+        <label>Gender: </label> {{customer.gender}}
+    </div>
+
+    <span class="button is-small btn-info" (click)='editCustomer(customer)'>Edit</span>
+    <span class="button is-small btn-info" (click)='deleteCustomer()'>Delete</span>
+
+    <hr/>
+</div>
