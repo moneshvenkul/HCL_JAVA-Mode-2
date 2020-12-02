@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ClientSide": {
+    "Angular10JwtAuth": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ClientSide",
+            "outputPath": "dist/Angular10JwtAuth",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ClientSide:build"
+            "browserTarget": "Angular10JwtAuth:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ClientSide:build:production"
+              "browserTarget": "Angular10JwtAuth:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ClientSide:build"
+            "browserTarget": "Angular10JwtAuth:build"
           }
         },
         "test": {
@@ -110,15 +110,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ClientSide:serve"
+            "devServerTarget": "Angular10JwtAuth:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ClientSide:serve:production"
+              "devServerTarget": "Angular10JwtAuth:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "ClientSide"
+    }
+  },
+  "defaultProject": "Angular10JwtAuth",
+  "cli": {
+    "analytics": false
+  }
 }
