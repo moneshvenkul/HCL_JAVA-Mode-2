@@ -28,14 +28,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.pack.ServerSide.models.ERole;
+import com.pack.ServerSide.models.Hangars;
+import com.pack.ServerSide.models.Pilots;
+import com.pack.ServerSide.models.Planes;
 import com.pack.ServerSide.models.Role;
 import com.pack.ServerSide.models.User;
 import com.pack.ServerSide.payload.request.LoginRequest;
 import com.pack.ServerSide.payload.request.SignupRequest;
 import com.pack.ServerSide.payload.response.JwtResponse;
 import com.pack.ServerSide.payload.response.MessageResponse;
+import com.pack.ServerSide.repository.PlanesRepository;
+import com.pack.ServerSide.repository.PilotsRepository;
 import com.pack.ServerSide.repository.RoleRepository;
 import com.pack.ServerSide.repository.UserRepository;
+import com.pack.ServerSide.repository.HangarRepository;
 import com.pack.ServerSide.security.jwt.JwtUtils;
 import com.pack.ServerSide.security.services.UserDetailsImpl;
 
@@ -48,6 +54,15 @@ public class AuthController {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	PlanesRepository planesRepository;
+	
+	@Autowired
+	PilotsRepository pilotsRepository;
+	
+	@Autowired
+	HangarRepository hangarsRepository;
 
 	@Autowired
 	RoleRepository roleRepository;
@@ -178,6 +193,204 @@ public class AuthController {
 	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 	    }
 	  }
+	  
+	  @PostMapping(value = "/planes")
+	  public ResponseEntity<Planes> postPlanes(@RequestBody Planes planes) {
+	    try {
+	      Planes _planes = planesRepository.save(new Planes(planes.getName(), planes.getModel()));
+	      return new ResponseEntity<>(_planes, HttpStatus.CREATED);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+	    }
+	  }
+	  
+	  @GetMapping("/planes")
+	  public ResponseEntity<List<Planes>> getAllPlanes() {
+	    List<Planes> planes = new ArrayList<Planes>();
+	    try {
+	    	planesRepository.findAll().forEach(planes::add);
+	     
+	      if (planes.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	      }
+	      return new ResponseEntity<>(planes, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+	  
+	  @DeleteMapping("/planes")
+	  public ResponseEntity<HttpStatus> deleteAllPlanes() {
+	    try {
+	    	planesRepository.deleteAll();
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+
+	  }
+	 @GetMapping("/planes/{id}")
+	  public ResponseEntity<Planes> getPlanesById(@PathVariable("id") long id) {
+	    Optional<Planes> planesData = planesRepository.findById(id);
+
+	    if (planesData.isPresent()) {
+	      return new ResponseEntity<>(planesData.get(), HttpStatus.OK);
+	    } else {
+	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	  }
+	 
+	 @PutMapping(value = "/planes/update")
+	  public Planes updatePlanes(@RequestBody Planes planes) {
+	      System.out.println("Into update");
+	    System.out.println("into update"+planes.getId()+" "+planes.getName());
+	    Planes plane = new Planes(planes.getId(),planes.getName(),planes.getModel());
+	         Planes plane1 = planesRepository.save(plane);
+	    return plane1;
+	  }
+	 
+	  @DeleteMapping("/planes/{id}")
+	  public ResponseEntity<HttpStatus> deletePlanes(@PathVariable("id") long id) {
+	    try {
+	    	planesRepository.deleteById(id);
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+	  }
+	  
+	  @PostMapping(value = "/pilots")
+	  public ResponseEntity<Pilots> postCustomer(@RequestBody Pilots pilots) {
+	    try {
+	      Pilots _pilots = pilotsRepository.save(new Pilots(pilots.getPilotname(), pilots.getModel()));
+	      return new ResponseEntity<>(_pilots, HttpStatus.CREATED);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+	    }
+	  }
+	  
+	  @GetMapping("/pilots")
+	  public ResponseEntity<List<Pilots>> getAllPilots() {
+	    List<Pilots> pilots = new ArrayList<Pilots>();
+	    try {
+	    	pilotsRepository.findAll().forEach(pilots::add);
+	     
+	      if (pilots.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	      }
+	      return new ResponseEntity<>(pilots, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+	  
+	  @DeleteMapping("/pilots")
+	  public ResponseEntity<HttpStatus> deleteAllPilots() {
+	    try {
+	    	pilotsRepository.deleteAll();
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+
+	  }
+	 @GetMapping("/pilots/{id}")
+	  public ResponseEntity<Pilots> getPilotsById(@PathVariable("id") long id) {
+	    Optional<Pilots> pilotsData = pilotsRepository.findById(id);
+
+	    if (pilotsData.isPresent()) {
+	      return new ResponseEntity<>(pilotsData.get(), HttpStatus.OK);
+	    } else {
+	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	  }
+	 
+	 @PutMapping(value = "/pilots/update")
+	  public Pilots updatePilots(@RequestBody Pilots pilots) {
+	      System.out.println("Into update");
+	    System.out.println("into update"+pilots.getId()+" "+pilots.getPilotname());
+	    Pilots pilot = new Pilots(pilots.getId(),pilots.getPilotname(),pilots.getModel());
+	         Pilots pilot1 = pilotsRepository.save(pilot);
+	    return pilot1;
+	  }
+	 
+	  @DeleteMapping("/pilots/{id}")
+	  public ResponseEntity<HttpStatus> deletePilots(@PathVariable("id") long id) {
+	    try {
+	    	pilotsRepository.deleteById(id);
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+	  }
+	  
+	  @PostMapping(value = "/hangars")
+	  public ResponseEntity<Hangars> postHangars(@RequestBody Hangars hangars) {
+	    try {
+	      Hangars _hangars = hangarsRepository.save(new Hangars(hangars.getHangarname(), hangars.getModel()));
+	      return new ResponseEntity<>(_hangars, HttpStatus.CREATED);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+	    }
+	  }
+	  
+	  @GetMapping("/hangars")
+	  public ResponseEntity<List<Hangars>> getAllHangars() {
+	    List<Hangars> hangars = new ArrayList<Hangars>();
+	    try {
+	    	hangarsRepository.findAll().forEach(hangars::add);
+	     
+	      if (hangars.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	      }
+	      return new ResponseEntity<>(hangars, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+	  
+	  @DeleteMapping("/hangars")
+	  public ResponseEntity<HttpStatus> deleteAllHangars() {
+	    try {
+	    	hangarsRepository.deleteAll();
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+
+	  }
+	 @GetMapping("/hangars/{id}")
+	  public ResponseEntity<Hangars> getHangarsById(@PathVariable("id") long id) {
+	    Optional<Hangars> hangarsData = hangarsRepository.findById(id);
+
+	    if (hangarsData.isPresent()) {
+	      return new ResponseEntity<>(hangarsData.get(), HttpStatus.OK);
+	    } else {
+	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	  }
+	 
+	 @PutMapping(value = "/hangars/update")
+	  public Hangars hangarsPlanes(@RequestBody Hangars hangars) {
+	      System.out.println("Into update");
+	    System.out.println("into update"+hangars.getId()+" "+hangars.getHangarname());
+	    Hangars hangar = new Hangars(hangars.getId(),hangars.getHangarname(),hangars.getModel());
+	         Hangars hangar1 = hangarsRepository.save(hangar);
+	    return hangar1;
+	  }
+	 
+	  @DeleteMapping("/hangars/{id}")
+	  public ResponseEntity<HttpStatus> deleteHangars(@PathVariable("id") long id) {
+	    try {
+	    	hangarsRepository.deleteById(id);
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+	  }
+	  
+	  
+	  
 	
 	
 }

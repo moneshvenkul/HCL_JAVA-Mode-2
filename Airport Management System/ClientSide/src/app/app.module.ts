@@ -11,12 +11,23 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { EditManagerComponent } from './edit-manager/edit-manager.component';
 import { ManagersListComponent } from './managers-list/managers-list.component';
+import { CreatePlanesComponent } from './create-planes/create-planes.component';
+import { PlanesListComponent } from './planes-list/planes-list.component';
+import { PlanesDetailsComponent } from './planes-details/planes-details.component';
+import { EditPlanesComponent } from './edit-planes/edit-planes.component';
+import { CreatePilotsComponent } from './create-pilots/create-pilots.component';
+import { PilotsListComponent } from './pilots-list/pilots-list.component';
+import { PilotsDetailsComponent } from './pilots-details/pilots-details.component';
+import { EditPilotsComponent } from './edit-pilots/edit-pilots.component';
+import { CreateHangarComponent } from './create-hangar/create-hangar.component';
+import { HangarsDetailsComponent } from './hangars-details/hangars-details.component';
+import { HangarsListComponent } from './hangars-list/hangars-list.component';
+import { EditHangarsComponent } from './edit-hangars/edit-hangars.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +37,21 @@ import { ManagersListComponent } from './managers-list/managers-list.component';
     HomeComponent,
     ProfileComponent,
     BoardAdminComponent,
-    BoardModeratorComponent,
     BoardUserComponent,
     EditManagerComponent,
     ManagersListComponent,
+    CreatePlanesComponent,
+    PlanesListComponent,
+    PlanesDetailsComponent,
+    EditPlanesComponent,
+    CreatePilotsComponent,
+    PilotsListComponent,
+    PilotsDetailsComponent,
+    EditPilotsComponent,
+    CreateHangarComponent,
+    HangarsDetailsComponent,
+    HangarsListComponent,
+    EditHangarsComponent,
   ],
   imports: [
     BrowserModule,

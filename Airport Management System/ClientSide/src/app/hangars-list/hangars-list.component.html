@@ -1,0 +1,8 @@
+<h3>Hangars</h3>
+<div *ngFor="let hangar of hangars | async" style="width: 300px;">
+<app-hangars-details [hangars] = 'hangar'></app-hangars-details>
+</div>
+
+<div *ngIf="currentUser.roles=='ROLE_ADMIN'">
+    <button type="button" class="button btn-danger" (click)='deleteHangars()'>Delete All</button>
+</div>

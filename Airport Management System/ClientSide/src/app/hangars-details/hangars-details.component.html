@@ -1,0 +1,13 @@
+<div *ngIf="hangars">
+    <div>
+        <label>Name: </label> {{hangars.hangarname}}
+    </div>
+    <div>
+        <label>Model: </label> {{hangars.model}}
+    </div>
+
+    <span *ngIf="currentUser.roles=='ROLE_ADMIN'" class="button is-small btn-info" (click)='editHangars(hangars)'>Edit</span>
+    <span *ngIf="currentUser.roles=='ROLE_ADMIN'" class="button is-small btn-info" (click)='deleteHangars()'>Delete</span>
+
+    <hr/>
+</div>

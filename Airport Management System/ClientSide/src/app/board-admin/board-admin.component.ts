@@ -17,7 +17,7 @@ export class BoardAdminComponent implements OnInit {
 
   content: string;
 
-  togglemanager :boolean=false;
+  togglemanager :boolean=true;
 
   constructor(private userService: UserService) { }
 

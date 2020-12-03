@@ -1,0 +1,8 @@
+<h3>Pilots</h3>
+<div *ngFor="let pilot of pilots | async" style="width: 300px;">
+<app-pilots-details [pilots] = 'pilot'></app-pilots-details>
+</div>
+
+<div *ngIf="currentUser.roles=='ROLE_ADMIN'">
+    <button type="button" class="button btn-danger" (click)='deletePilots()'>Delete All</button>
+</div>

@@ -1,0 +1,13 @@
+<div *ngIf="pilots">
+    <div>
+        <label>Name: </label> {{pilots.pilotname}}
+    </div>
+    <div>
+        <label>Model: </label> {{pilots.model}}
+    </div>
+
+    <span *ngIf="currentUser.roles=='ROLE_ADMIN'" class="button is-small btn-info" (click)='editPilots(pilots)'>Edit</span>
+    <span *ngIf="currentUser.roles=='ROLE_ADMIN'" class="button is-small btn-info" (click)='deletePilots()'>Delete</span>
+
+    <hr/>
+</div>

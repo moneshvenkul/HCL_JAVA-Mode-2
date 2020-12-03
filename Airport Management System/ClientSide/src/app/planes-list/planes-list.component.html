@@ -1,0 +1,8 @@
+<h3>Planes</h3>
+<div *ngFor="let plane of planes | async" style="width: 300px;">
+<app-planes-details [planes] = 'plane'></app-planes-details>
+</div>
+
+<div *ngIf="currentUser.roles=='ROLE_ADMIN'">
+    <button type="button" class="button btn-danger" (click)='deletePlanes()'>Delete All</button>
+</div>
