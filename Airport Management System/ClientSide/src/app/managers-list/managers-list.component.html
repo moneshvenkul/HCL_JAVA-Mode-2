@@ -1,0 +1,14 @@
+<div *ngIf="manager">
+  <div><label>FirstName: </label> {{ manager.firstname }}</div>
+  <div><label>LastName: </label> {{ manager.lastname }}</div>
+  <div><label>UserName: </label> {{ manager.username }}</div>
+  <div><label>Email: </label> {{ manager.email }}</div>
+  <div><label>Age: </label> {{ manager.age }}</div>
+  <div><label>Gender: </label> {{ manager.gender }}</div>
+  <div><label>Phone Number: </label> {{ manager.phonenumber }}</div>
+
+  <span class="button is-small btn-info" (click)="editUser(manager)">Edit</span>
+  <span class="button is-small btn-info" (click)="deleteUser()">Delete</span>
+
+  <hr />
+</div>

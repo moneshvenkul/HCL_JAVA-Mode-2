@@ -57,6 +57,7 @@ public class User {
 	private Set<Role> roles = new HashSet<>();
 
 	public User() {
+		super();
 	}
 
 	public User(String username, String email, String password) {
@@ -159,6 +160,37 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
+	
+
+	
+
+	public User(Long id, @NotBlank @Size(max = 20) String firstname, @NotBlank @Size(max = 20) String lastname,
+			@NotNull @Min(18) Integer age, Gender gender, @NotNull @Size(min = 10, max = 10) String phonenumber,
+			@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@Size(max = 120) String password, Set<Role> roles) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.age = age;
+		this.gender = gender;
+		this.phonenumber = phonenumber;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", age=" + age + ", gender="
+				+ gender + ", phonenumber=" + phonenumber + ", username=" + username + ", email=" + email + "]";
+	}
+
+	
+	
+
+	
 
 	
 	

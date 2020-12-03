@@ -1,13 +1,16 @@
 package com.pack.ServerSide.controllers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,10 +18,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.pack.ServerSide.models.ERole;
 import com.pack.ServerSide.models.Role;
@@ -112,4 +119,65 @@ public class AuthController {
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
+	
+	
+
+	
+	
+	@GetMapping("/users")
+	  public ResponseEntity<List<User>> getAllUsers() {
+	    List<User> users = new ArrayList<User>();
+	    try {
+	    	userRepository.findAll().forEach(users::add);
+	     
+	      if (users.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	      }
+	      return new ResponseEntity<>(users, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+	
+	 @DeleteMapping("/users")
+	  public ResponseEntity<HttpStatus> deleteAllUsers() {
+	    try {
+	    	userRepository.deleteAll();
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+
+	  }
+	 @GetMapping("/users/{id}")
+	  public ResponseEntity<User> getUsersById(@PathVariable("id") long id) {
+	    Optional<User> userData = userRepository.findById(id);
+
+	    if (userData.isPresent()) {
+	      return new ResponseEntity<>(userData.get(), HttpStatus.OK);
+	    } else {
+	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	  }
+	 
+	 @PutMapping(value = "/users/update")
+	  public User updateUsers(@RequestBody User user) {
+	      System.out.println("Into update");
+	    System.out.println("into update"+user.getId()+" "+user.getFirstname());
+	    User users = new User(user.getId(),user.getFirstname(),user.getLastname(),user.getAge(),user.getGender(),user.getPhonenumber(),user.getUsername(),user.getEmail(),user.getPassword(),user.getRoles());
+	         User user1 = userRepository.save(users);
+	    return user1;
+	  }
+	 
+	  @DeleteMapping("/users/{id}")
+	  public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
+	    try {
+	    	userRepository.deleteById(id);
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+	  }
+	
+	
 }

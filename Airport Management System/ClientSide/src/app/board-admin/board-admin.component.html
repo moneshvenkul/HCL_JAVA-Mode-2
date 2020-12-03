@@ -1,5 +1,14 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+
+
+ <h3>Managers</h3>
+ <button type="buttom" (click)='toggleManager()'>Manager's List</button>
+ <div [hidden]="togglemanager">
+ <div *ngFor="let manager of managers | async" style="width: 300px;">
+ <app-managers-list [manager] = 'manager'></app-managers-list>
+ </div>
+ 
+ <div>
+     <button type="button" class="button btn-danger" (click)='deleteUsers()'>Delete All</button>
+ </div>
 </div>
+ 
