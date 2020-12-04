@@ -18,6 +18,7 @@ import {EditPilotsComponent} from './edit-pilots/edit-pilots.component';
 import {CreateHangarComponent} from './create-hangar/create-hangar.component';
 import {HangarsListComponent} from './hangars-list/hangars-list.component';
 import {EditHangarsComponent} from './edit-hangars/edit-hangars.component'
+import { AllocatePlanesComponent } from './allocate-planes/allocate-planes.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -40,7 +41,8 @@ const routes: Routes = [
   {path:'admin/viewhangars/edit',component:EditHangarsComponent},
   {path:'manager/viewplanes',component:PlanesListComponent},
   {path:'manager/viewpilots',component:PilotsListComponent},
-  {path:'manager/viewhangars',component:HangarsListComponent}
+  {path:'manager/viewhangars',component:HangarsListComponent},
+  {path:'manager/viewhangars/allocate',component:AllocatePlanesComponent}
 
 ];
 

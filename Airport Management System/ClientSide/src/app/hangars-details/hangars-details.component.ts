@@ -36,4 +36,12 @@ export class HangarsDetailsComponent implements OnInit {
         error => console.log(error));
   }
 
+  allocatePLane(hangars : Hangars): void{
+
+    console.log("into edit");
+    localStorage.setItem("id",hangars.id.toString());
+    this.router.navigate(["manager/viewhangars/allocate"]);
+
+  }
+
 }

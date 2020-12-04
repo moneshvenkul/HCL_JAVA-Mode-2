@@ -1,9 +1,16 @@
 package com.pack.ServerSide.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -23,6 +30,21 @@ public class Hangars {
 	@NotBlank
 	@Size(max = 20)
 	private String model;
+	
+	@Size(max = 20)
+	private String planeallocated;
+	
+	
+	
+	
+
+	public String getPlaneallocated() {
+		return planeallocated;
+	}
+
+	public void setPlaneallocated(String planeallocated) {
+		this.planeallocated = planeallocated;
+	}
 
 	public Long getId() {
 		return id;
@@ -59,6 +81,27 @@ public class Hangars {
 		super();
 		this.hangarname = hangarname;
 		this.model = model;
+	}
+	
+	
+
+	public Hangars(@NotBlank @Size(max = 20) String hangarname, @NotBlank @Size(max = 20) String model,
+			 @Size(max = 20) String planeallocated) {
+		super();
+		this.hangarname = hangarname;
+		this.model = model;
+		this.planeallocated = planeallocated;
+	}
+	
+	
+
+	public Hangars(Long id, @NotBlank @Size(max = 20) String hangarname, @NotBlank @Size(max = 20) String model,
+			@Size(max = 20) String planeallocated) {
+		super();
+		this.id = id;
+		this.hangarname = hangarname;
+		this.model = model;
+		this.planeallocated = planeallocated;
 	}
 
 	public Hangars() {

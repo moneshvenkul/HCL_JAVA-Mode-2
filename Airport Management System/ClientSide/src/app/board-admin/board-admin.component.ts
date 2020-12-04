@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { Manager } from '../Manager';
-import { Router } from '@angular/router';
-import { ManagersListComponent } from '../managers-list/managers-list.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -18,6 +16,9 @@ export class BoardAdminComponent implements OnInit {
   content: string;
 
   togglemanager :boolean=true;
+
+  p: Number = 1;
+  count: Number = 5;
 
   constructor(private userService: UserService) { }
 

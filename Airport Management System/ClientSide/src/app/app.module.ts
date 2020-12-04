@@ -12,7 +12,6 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardUserComponent } from './board-user/board-user.component';
-
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { EditManagerComponent } from './edit-manager/edit-manager.component';
 import { ManagersListComponent } from './managers-list/managers-list.component';
@@ -28,6 +27,7 @@ import { CreateHangarComponent } from './create-hangar/create-hangar.component';
 import { HangarsDetailsComponent } from './hangars-details/hangars-details.component';
 import { HangarsListComponent } from './hangars-list/hangars-list.component';
 import { EditHangarsComponent } from './edit-hangars/edit-hangars.component';
+import { AllocatePlanesComponent } from './allocate-planes/allocate-planes.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { EditHangarsComponent } from './edit-hangars/edit-hangars.component';
     HangarsDetailsComponent,
     HangarsListComponent,
     EditHangarsComponent,
+    AllocatePlanesComponent,
   ],
   imports: [
     BrowserModule,

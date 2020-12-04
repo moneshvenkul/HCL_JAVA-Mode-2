@@ -14,14 +14,15 @@
         routerLinkActive="active">Add Hangars</a>
         <a routerLink="viewhangars" class="btn btn-primary active" role="button"
         routerLinkActive="active">View Hangar</a>
-
     </nav>
+    
         <h3>Managers</h3>
         <div>
         <button type="buttom" (click)='toggleManager()'>Manager's List</button>
         <div [hidden]="togglemanager">
-        <div *ngFor="let manager of managers | async" style="width: 300px;">
-        <app-managers-list [manager] = 'manager'></app-managers-list>
+        <div *ngFor="let manager of managers  | async" style="width: 300px;">
+
+        <app-managers-list [manager] = 'manager' ></app-managers-list>
         </div>
         
         <div>
@@ -29,6 +30,8 @@
         </div>
        </div>
        </div>
+
+</div>
        
 
 

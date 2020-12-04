@@ -374,7 +374,9 @@ public class AuthController {
 	  public Hangars hangarsPlanes(@RequestBody Hangars hangars) {
 	      System.out.println("Into update");
 	    System.out.println("into update"+hangars.getId()+" "+hangars.getHangarname());
-	    Hangars hangar = new Hangars(hangars.getId(),hangars.getHangarname(),hangars.getModel());
+	    System.out.println(hangars.getPlaneallocated());
+	    Hangars hangar = new Hangars(hangars.getId(),hangars.getHangarname(),hangars.getModel(),hangars.getPlaneallocated());
+	    
 	         Hangars hangar1 = hangarsRepository.save(hangar);
 	    return hangar1;
 	  }
