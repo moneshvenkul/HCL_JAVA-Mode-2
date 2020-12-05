@@ -18,7 +18,7 @@ export class BoardAdminComponent implements OnInit {
   togglemanager :boolean=true;
 
   p: Number = 1;
-  count: Number = 5;
+  count: Number = 2;
 
   constructor(private userService: UserService) { }
 

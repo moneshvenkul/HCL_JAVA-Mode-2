@@ -13,6 +13,9 @@ import { UserService } from '../_services/user.service';
 export class ManagersListComponent implements OnInit {
 
   @Input() manager: Manager;
+
+  
+
   constructor(private userService: UserService, private router: Router, private listComponent: BoardAdminComponent) { }
 
   ngOnInit(): void {
