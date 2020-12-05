@@ -31,7 +31,8 @@ export class AuthService {
       phonenumber: user.phonenumber,
       gender: user.gender,
       email: user.email,
-      password: user.password
+      password: user.password,
+      role:user.role
     }, httpOptions);
   }
 }

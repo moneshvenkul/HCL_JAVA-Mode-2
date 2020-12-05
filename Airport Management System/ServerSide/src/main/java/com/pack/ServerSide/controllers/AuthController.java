@@ -104,34 +104,64 @@ public class AuthController {
 		User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getAge(),
 				signUpRequest.getGender(), signUpRequest.getPhonenumber(), signUpRequest.getUsername(),
 				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
-
-		Set<String> strRoles = signUpRequest.getRole();
+		
+		
+		System.out.println(signUpRequest.getFirstname());
+		String strRoles = signUpRequest.getRole();
+		System.out.println(strRoles);
+		
 		Set<Role> roles = new HashSet<>();
+		
+		System.out.println(strRoles);
 
 		if (strRoles == null) {
+			System.out.println("inside null");
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "admin":
-					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-
-					break;
-				default:
-					Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
-				}
-			});
+		} else if (strRoles.equals("admin")) {
+			System.out.println("inside else");
+			
+			Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+			roles.add(adminRole);
+	
 		}
-
+		else {
+			
+			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+			System.out.println("inside user "+strRoles);
+			roles.add(userRole);
+			
+		}
+		
+		
+		
+		
+		
+//		strRoles.forEach(role -> {
+//			System.out.println("inside not null");
+//			switch (role) {
+//			case "admin":
+//				Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+//						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//				roles.add(adminRole);
+//
+//				break;
+//			default:
+//				Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+//						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//				System.out.println("inside user");
+//				roles.add(userRole);
+//			}
+//		});
+//		
+		System.out.println("outside");
+		
+		
 		user.setRoles(roles);
 		userRepository.save(user);
-
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 	
