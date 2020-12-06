@@ -13,6 +13,8 @@ export class PlanesListComponent implements OnInit {
 
   planes: Observable<Planes[]>;
   currentUser: any;
+  p: Number = 1;
+  count: Number = 2;
 
   constructor(private planesService: PlanesService,private token: TokenStorageService) { }
 

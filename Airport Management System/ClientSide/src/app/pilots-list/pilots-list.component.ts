@@ -12,6 +12,8 @@ import { TokenStorageService } from '../_services/token-storage.service';
 export class PilotsListComponent implements OnInit {
   pilots: Observable<Pilots[]>;
   currentUser: any;
+  p: Number = 1;
+  count: Number = 2;
 
   constructor(private pilotsService: PilotsService,private token: TokenStorageService) { }
 

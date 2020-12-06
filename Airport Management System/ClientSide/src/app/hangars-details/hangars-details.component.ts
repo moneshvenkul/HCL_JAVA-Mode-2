@@ -15,7 +15,7 @@ export class HangarsDetailsComponent implements OnInit {
   currentUser: any;
 
   constructor(private router: Router,private token: TokenStorageService,private hangarsService: HangarsService, private listComponent: HangarsListComponent) { }
-
+  togglemanager :boolean=true;
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
   }
@@ -24,6 +24,10 @@ export class HangarsDetailsComponent implements OnInit {
     console.log("into edit");
     localStorage.setItem("id",hangars.id.toString());
     this.router.navigate(["admin/viewhangars/edit"]);
+  }
+
+  toggleManager(){
+    this.togglemanager=!this.togglemanager;
   }
 
   deleteHangars() {

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+import { ManagersService} from '../_services/managers.service';
 import { Manager } from '../Manager';
 import { Observable } from 'rxjs';
 
@@ -20,12 +20,12 @@ export class BoardAdminComponent implements OnInit {
   p: Number = 1;
   count: Number = 2;
 
-  constructor(private userService: UserService) { }
+  constructor(private managersService: ManagersService) { }
 
 
 
   reloadData(){
-    this.managers = this.userService.getUsersList();
+    this.managers = this.managersService.getManagersList();
   }
 
 
@@ -38,7 +38,7 @@ export class BoardAdminComponent implements OnInit {
   }
 
   deleteUsers() {
-    this.userService.deleteAll()
+    this.managersService.deleteAll()
       .subscribe(
         data => {
           console.log(data);

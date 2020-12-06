@@ -13,11 +13,16 @@ import { TokenStorageService } from '../_services/token-storage.service';
 export class PlanesDetailsComponent implements OnInit {
   @Input() planes: Planes;
   currentUser: any;
+  togglemanager :boolean=true;
 
   constructor(private router: Router,private planesService: PlanesService,private token: TokenStorageService, private listComponent: PlanesListComponent) { }
   
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
+  }
+
+  toggleManager(){
+    this.togglemanager=!this.togglemanager;
   }
 
   editPlanes(planes: Planes): void{

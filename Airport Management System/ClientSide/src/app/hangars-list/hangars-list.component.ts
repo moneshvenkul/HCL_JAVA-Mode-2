@@ -13,6 +13,9 @@ export class HangarsListComponent implements OnInit {
   hangars: Observable<Hangars[]>;
   currentUser: any;
 
+  p: Number = 1;
+  count: Number = 2;
+
 
 
 constructor(private hangarsService: HangarsService,private token: TokenStorageService) { }

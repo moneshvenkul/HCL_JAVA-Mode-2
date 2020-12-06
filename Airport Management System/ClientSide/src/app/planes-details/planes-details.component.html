@@ -1,16 +1,16 @@
 <div *ngIf="planes">
+    <button type="button" (click)='toggleManager()'><b>Id:</b> {{ planes.id }}</button>
+    <div [hidden]="togglemanager">
     <div>
-        <label>ID: </label> {{planes.id}}
+        <label><b>Name:</b> </label> {{planes.name}}
     </div>
     <div>
-        <label>Name: </label> {{planes.name}}
-    </div>
-    <div>
-        <label>Model: </label> {{planes.model}}
+        <label><b>Model:</b> </label> {{planes.model}}
     </div>
 
-    <span  *ngIf="currentUser.roles=='ROLE_ADMIN'" class="button is-small btn-info" (click)='editPlanes(planes)'>Edit</span>
-    <span  *ngIf="currentUser.roles=='ROLE_ADMIN'" class="button is-small btn-info" (click)='deletePlanes()'>Delete</span>
+    <button  *ngIf="currentUser.roles=='ROLE_ADMIN'" type="button" style="margin-right: 20px;" (click)='editPlanes(planes)'>Edit</button>
+    <button  *ngIf="currentUser.roles=='ROLE_ADMIN'" class="button btn-danger" (click)='deletePlanes()'>Delete</button>
+</div>
 
     <hr/>
 </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Hangars } from '../hangars';
+import { Planes } from '../planes';
 import { HangarsService } from '../_services/hangars.service';
 
 @Component({
@@ -11,11 +13,16 @@ import { HangarsService } from '../_services/hangars.service';
 export class AllocatePlanesComponent implements OnInit {
 
   hangars: Hangars = new Hangars();
+  togglemanager :boolean=true;
 
   constructor(private hangarsService: HangarsService, private router: Router) { }
 
   ngOnInit(): void {
     this.allocatePlane();
+  }
+
+  toggleManager(){
+    this.togglemanager=!this.togglemanager;
   }
 
   allocatePlane(){

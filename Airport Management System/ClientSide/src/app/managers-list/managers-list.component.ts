@@ -14,12 +14,16 @@ export class ManagersListComponent implements OnInit {
 
   @Input() manager: Manager;
 
-  
+  togglemanager :boolean=true;
 
   constructor(private userService: UserService, private router: Router, private listComponent: BoardAdminComponent) { }
 
   ngOnInit(): void {
   
+  }
+
+  toggleManager(){
+    this.togglemanager=!this.togglemanager;
   }
 
   

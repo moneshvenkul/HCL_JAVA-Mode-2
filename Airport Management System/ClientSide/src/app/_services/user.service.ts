@@ -41,6 +41,8 @@ export class UserService {
     return this.http.get(this.baseUrl);
 }
 
+
+
 deleteAll(): Observable<any>{
   return this.http.delete(this.baseUrl);
 }

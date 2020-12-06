@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.pack.ServerSide.models.ERole;
 import com.pack.ServerSide.models.Hangars;
+import com.pack.ServerSide.models.Managers;
 import com.pack.ServerSide.models.Pilots;
 import com.pack.ServerSide.models.Planes;
 import com.pack.ServerSide.models.Role;
@@ -42,6 +43,7 @@ import com.pack.ServerSide.repository.PilotsRepository;
 import com.pack.ServerSide.repository.RoleRepository;
 import com.pack.ServerSide.repository.UserRepository;
 import com.pack.ServerSide.repository.HangarRepository;
+import com.pack.ServerSide.repository.ManagersRepository;
 import com.pack.ServerSide.security.jwt.JwtUtils;
 import com.pack.ServerSide.security.services.UserDetailsImpl;
 
@@ -54,6 +56,9 @@ public class AuthController {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	ManagersRepository managersRepository;
 	
 	@Autowired
 	PlanesRepository planesRepository;
@@ -105,6 +110,10 @@ public class AuthController {
 				signUpRequest.getGender(), signUpRequest.getPhonenumber(), signUpRequest.getUsername(),
 				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
 		
+		Managers manager = new Managers(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getAge(),
+				signUpRequest.getGender(), signUpRequest.getPhonenumber(), signUpRequest.getUsername(),
+				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
+		
 		
 		System.out.println(signUpRequest.getFirstname());
 		String strRoles = signUpRequest.getRole();
@@ -119,6 +128,9 @@ public class AuthController {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
+			managersRepository.save(manager);
+			
+			
 		} else if (strRoles.equals("admin")) {
 			System.out.println("inside else");
 			
@@ -133,13 +145,11 @@ public class AuthController {
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			System.out.println("inside user "+strRoles);
 			roles.add(userRole);
+			managersRepository.save(manager);
 			
 		}
 		
-		
-		
-		
-		
+				
 //		strRoles.forEach(role -> {
 //			System.out.println("inside not null");
 //			switch (role) {
@@ -419,6 +429,32 @@ public class AuthController {
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 	    }
+	  }
+	  
+	  @GetMapping("/managers")
+	  public ResponseEntity<List<Managers>> getAllManagers() {
+	    List<Managers> managers = new ArrayList<Managers>();
+	    try {
+	    	managersRepository.findAll().forEach(managers::add);
+	     
+	      if (managers.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	      }
+	      return new ResponseEntity<>(managers, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+	  
+	  @DeleteMapping("/managers")
+	  public ResponseEntity<HttpStatus> deleteAllManagers() {
+	    try {
+	    	managersRepository.deleteAll();
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+
 	  }
 	  
 	  
