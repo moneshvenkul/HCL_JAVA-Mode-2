@@ -9,5 +9,7 @@ import com.pack.ServerSide.models.Planes;
 
 @Repository
 public interface PlanesRepository extends JpaRepository<Planes, Long> {
+
+	Planes findByName(String name);
 	
 }

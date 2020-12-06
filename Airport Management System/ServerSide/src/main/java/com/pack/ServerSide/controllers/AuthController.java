@@ -27,12 +27,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.pack.ServerSide.models.Allocatedplanes;
 import com.pack.ServerSide.models.ERole;
 import com.pack.ServerSide.models.Hangars;
 import com.pack.ServerSide.models.Managers;
 import com.pack.ServerSide.models.Pilots;
 import com.pack.ServerSide.models.Planes;
 import com.pack.ServerSide.models.Role;
+import com.pack.ServerSide.models.Unallocatedplanes;
 import com.pack.ServerSide.models.User;
 import com.pack.ServerSide.payload.request.LoginRequest;
 import com.pack.ServerSide.payload.request.SignupRequest;
@@ -41,7 +43,9 @@ import com.pack.ServerSide.payload.response.MessageResponse;
 import com.pack.ServerSide.repository.PlanesRepository;
 import com.pack.ServerSide.repository.PilotsRepository;
 import com.pack.ServerSide.repository.RoleRepository;
+import com.pack.ServerSide.repository.UnallocatedplanesRepository;
 import com.pack.ServerSide.repository.UserRepository;
+import com.pack.ServerSide.repository.AllocatedplanesRepository;
 import com.pack.ServerSide.repository.HangarRepository;
 import com.pack.ServerSide.repository.ManagersRepository;
 import com.pack.ServerSide.security.jwt.JwtUtils;
@@ -62,6 +66,12 @@ public class AuthController {
 	
 	@Autowired
 	PlanesRepository planesRepository;
+	
+	@Autowired
+	UnallocatedplanesRepository unallocatedplanesRepository ;
+	
+	@Autowired
+	AllocatedplanesRepository allocatedplanesRepository ;
 	
 	@Autowired
 	PilotsRepository pilotsRepository;
@@ -236,12 +246,22 @@ public class AuthController {
 	  
 	  @PostMapping(value = "/planes")
 	  public ResponseEntity<Planes> postPlanes(@RequestBody Planes planes) {
+		
+		  
+		
 	    try {
 	      Planes _planes = planesRepository.save(new Planes(planes.getName(), planes.getModel()));
+	      Planes plane3 = planesRepository.findByName(planes.getName());
+	      unallocatedplanesRepository.save(new Unallocatedplanes(plane3.getId(),plane3.getName(), plane3.getModel()));
 	      return new ResponseEntity<>(_planes, HttpStatus.CREATED);
+	     
+	      
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 	    }
+	    
+	    
+	    
 	  }
 	  
 	  @GetMapping("/planes")
@@ -369,6 +389,7 @@ public class AuthController {
 	    try {
 	      Hangars _hangars = hangarsRepository.save(new Hangars(hangars.getHangarname(), hangars.getModel()));
 	      return new ResponseEntity<>(_hangars, HttpStatus.CREATED);
+	      
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 	    }
@@ -416,10 +437,29 @@ public class AuthController {
 	    System.out.println("into update"+hangars.getId()+" "+hangars.getHangarname());
 	    System.out.println(hangars.getPlaneallocated());
 	    Hangars hangar = new Hangars(hangars.getId(),hangars.getHangarname(),hangars.getModel(),hangars.getPlaneallocated());
+	    Hangars hangar1 = hangarsRepository.save(hangar);
+	    System.out.println(hangars.getPlaneallocated());
 	    
-	         Hangars hangar1 = hangarsRepository.save(hangar);
+	    if(hangars.getPlaneallocated()=="") {
+	    	System.out.println(" if");
+	    	 Allocatedplanes planes2 = allocatedplanesRepository.findByHangarname(hangars.getHangarname());
+	    	 unallocatedplanesRepository.save(new Unallocatedplanes(planes2.getId(),planes2.getName(),planes2.getModel()));
+	    	 allocatedplanesRepository.delete(planes2);
+	    }
+	    
+	    else if(hangars.getPlaneallocated()!=null) {
+	    	System.out.println("Else if");
+	    Unallocatedplanes planes1 = unallocatedplanesRepository.findByName(hangars.getPlaneallocated());
+	    allocatedplanesRepository.save(new Allocatedplanes(hangars.getId(),hangars.getHangarname(),planes1.getName(),planes1.getModel()));
+	    unallocatedplanesRepository.delete(planes1);
+	    }
+	    
+	   
+	    
+	         
 	    return hangar1;
 	  }
+	    
 	 
 	  @DeleteMapping("/hangars/{id}")
 	  public ResponseEntity<HttpStatus> deleteHangars(@PathVariable("id") long id) {
@@ -456,6 +496,38 @@ public class AuthController {
 	    }
 
 	  }
+	  
+	  
+	  @GetMapping("/unallocatedplanes")
+	  public ResponseEntity<List<Unallocatedplanes>> getAllUnallocatedplanes() {
+	    List<Unallocatedplanes> unallocatedplanes = new ArrayList<Unallocatedplanes>();
+	    try {
+	    	unallocatedplanesRepository.findAll().forEach(unallocatedplanes::add);
+	     
+	      if (unallocatedplanes.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	      }
+	      return new ResponseEntity<>(unallocatedplanes, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+	  
+	  @GetMapping("/allocatedplanes")
+	  public ResponseEntity<List<Allocatedplanes>> getAllAllocatedplanes() {
+	    List<Allocatedplanes> allocatedplanes = new ArrayList<Allocatedplanes>();
+	    try {
+	    	allocatedplanesRepository.findAll().forEach(allocatedplanes::add);
+	     
+	      if (allocatedplanes.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	      }
+	      return new ResponseEntity<>(allocatedplanes, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+	  
 	  
 	  
 	  

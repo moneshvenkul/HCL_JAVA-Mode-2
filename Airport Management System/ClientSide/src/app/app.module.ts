@@ -28,6 +28,11 @@ import { HangarsDetailsComponent } from './hangars-details/hangars-details.compo
 import { HangarsListComponent } from './hangars-list/hangars-list.component';
 import { EditHangarsComponent } from './edit-hangars/edit-hangars.component';
 import { AllocatePlanesComponent } from './allocate-planes/allocate-planes.component';
+import { AllocatedPlanesListComponent } from './allocated-planes-list/allocated-planes-list.component';
+import { AllocatedPlanesDetailsComponent } from './allocated-planes-details/allocated-planes-details.component';
+import { UnallocatedPlanesListComponent } from './unallocated-planes-list/unallocated-planes-list.component';
+import { UnallocatedPlanesDetailsComponent } from './unallocated-planes-details/unallocated-planes-details.component';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +58,11 @@ import { AllocatePlanesComponent } from './allocate-planes/allocate-planes.compo
     HangarsListComponent,
     EditHangarsComponent,
     AllocatePlanesComponent,
+    AllocatedPlanesListComponent,
+    AllocatedPlanesDetailsComponent,
+    UnallocatedPlanesListComponent,
+    UnallocatedPlanesDetailsComponent,
+  
   ],
   imports: [
     BrowserModule,

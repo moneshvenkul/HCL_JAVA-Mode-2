@@ -1,6 +1,5 @@
-.btn{
-    margin-top: 30px ;
-    margin-left:10px;
-    min-width: 120px;
-    max-width: 120px;
-}
+.btn {
+    margin: 20px;
+    white-space: nowrap;
+    text-align: center;
+ }
