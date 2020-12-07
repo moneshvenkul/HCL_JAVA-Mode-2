@@ -46,7 +46,8 @@ const routes: Routes = [
   {path:'manager/viewhangars',component:HangarsListComponent},
   {path:'manager/viewhangars/allocate',component:AllocatePlanesComponent},
   {path:'manager/viewunallocatedplanes',component:UnallocatedPlanesListComponent},
-  {path:'manager/viewallocatedplanes',component:AllocatedPlanesListComponent}
+  {path:'manager/viewallocatedplanes',component:AllocatedPlanesListComponent},
+  {path:'**',redirectTo: 'home', pathMatch: 'full'}
 
 ];
 

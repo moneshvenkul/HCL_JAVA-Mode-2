@@ -10,7 +10,6 @@
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"
       #f="ngForm"
-      novalidate
     >
     <div class="form-group">
       <label for="firstname">FirstName</label>
@@ -23,6 +22,7 @@
         minlength="3"
         maxlength="20"
         #firstname="ngModel"
+        placeholder="firstname"
       />
       <div class="alert-danger" *ngIf="f.submitted && firstname.invalid">
         <div *ngIf="firstname.errors.required">FirstName is required</div>
@@ -47,6 +47,7 @@
           minlength="3"
           maxlength="20"
           #lastname="ngModel"
+          placeholder="lastname"
         />
         <div class="alert-danger" *ngIf="f.submitted && lastname.invalid">
           <div *ngIf="lastname.errors.required">Lastname is required</div>
@@ -67,16 +68,17 @@
           name="age"
           [(ngModel)]="form.age"
           required
-          minlength="1"
-          maxlength="2"
+          min="18"
+          max="50"
           #age="ngModel"
+          placeholder="age"
         />
         <div class="alert-danger" *ngIf="f.submitted && age.invalid">
           <div *ngIf="age.errors.required">Age is required</div>
-          <div *ngIf="age.errors.minlength">
+          <div *ngIf="age.errors.min">
            Age must be at least 1 character
           </div>
-          <div *ngIf="age.errors.maxlength">
+          <div *ngIf="age.errors.max">
             Age must be at most 2 characters
           </div>
         </div>
@@ -85,11 +87,11 @@
       <div class="form-group">
         <label for="gender">Gender</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gender" value="MALE" [(ngModel)]="form.gender" #gender="ngModel">
+          <input class="form-check-input" type="radio" name="gender" value="MALE" [(ngModel)]="form.gender" #gender="ngModel" required>
           <label class="form-check-label">Male</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gender" value="FEMALE" [(ngModel)]="form.gender" #gender="ngModel">
+          <input class="form-check-input" type="radio" name="gender" value="FEMALE" [(ngModel)]="form.gender" #gender="ngModel" required>
           <label class="form-check-label">Female</label>
         </div>
         <div class="alert-danger" *ngIf="f.submitted && gender.invalid">
@@ -109,6 +111,7 @@
             minlength="10"
           maxlength="10"
             #phonenumber="ngModel"
+            placeholder="phonenumber"
           />
           <div class="alert-danger" *ngIf="f.submitted && phonenumber.invalid">
             <div *ngIf="phonenumber.errors.required">PhoneNumber is required</div>
@@ -133,6 +136,7 @@
           minlength="3"
           maxlength="20"
           #username="ngModel"
+          placeholder="username"
         />
         <div class="alert-danger" *ngIf="f.submitted && username.invalid">
           <div *ngIf="username.errors.required">Username is required</div>
@@ -154,6 +158,7 @@
           required
           email
           #email="ngModel"
+          placeholder="email"
         />
         <div class="alert-danger" *ngIf="f.submitted && email.invalid">
           <div *ngIf="email.errors.required">Email is required</div>
@@ -172,6 +177,7 @@
           required
           minlength="6"
           #password="ngModel"
+          placeholder="password"
         />
         <div class="alert-danger" *ngIf="f.submitted && password.invalid">
           <div *ngIf="password.errors.required">Password is required</div>
@@ -184,11 +190,11 @@
       <div class="form-group">
         <label for="role">Select Role</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="role" value="admin" [(ngModel)]="form.role" #role="ngModel">
+          <input class="form-check-input" type="radio" name="role" value="admin" [(ngModel)]="form.role" #role="ngModel" required>
           <label class="form-check-label">Admin</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="role" value="user" [(ngModel)]="form.role" #role="ngModel">
+          <input class="form-check-input" type="radio" name="role" value="user" [(ngModel)]="form.role" #role="ngModel" required>
           <label class="form-check-label">Manager</label>
         </div>
         <div class="alert-danger" *ngIf="f.submitted && role.invalid">
@@ -198,7 +204,7 @@
 
 
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class="btn btn-primary btn-block" >Sign Up</button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

@@ -145,6 +145,23 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	
+
+	public User(Long id, @NotBlank @Size(max = 20) String firstname, @NotBlank @Size(max = 20) String lastname,
+			@NotNull @Min(18) Integer age, Gender gender, @NotNull @Size(min = 10, max = 10) String phonenumber,
+			@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.age = age;
+		this.gender = gender;
+		this.phonenumber = phonenumber;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
 
 	public User(@NotBlank @Size(max = 20) String firstname, @NotBlank @Size(max = 20) String lastname,
 			@NotNull @Min(18) Integer age, Gender gender, @NotNull @Size(min = 10, max = 10) String phonenumber,

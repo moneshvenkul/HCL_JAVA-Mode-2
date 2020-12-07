@@ -138,7 +138,10 @@ public class AuthController {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
-			managersRepository.save(manager);
+			user.setRoles(roles);
+			User user1= userRepository.save(user);
+			User managers=userRepository.findByEmail(user1.getEmail());
+			managersRepository.save(new Managers(managers.getId(),managers.getFirstname(),managers.getLastname(),managers.getAge(),managers.getGender(),managers.getPhonenumber(),managers.getUsername(),managers.getEmail(),managers.getPassword()));
 			
 			
 		} else if (strRoles.equals("admin")) {
@@ -147,6 +150,8 @@ public class AuthController {
 			Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(adminRole);
+			user.setRoles(roles);
+			userRepository.save(user);
 	
 		}
 		else {
@@ -155,7 +160,11 @@ public class AuthController {
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			System.out.println("inside user "+strRoles);
 			roles.add(userRole);
-			managersRepository.save(manager);
+			user.setRoles(roles);
+			User user1 =userRepository.save(user);
+			User managers=userRepository.findByEmail(user1.getEmail());
+			managersRepository.save(new Managers(managers.getId(),managers.getFirstname(),managers.getLastname(),managers.getAge(),managers.getGender(),managers.getPhonenumber(),managers.getUsername(),managers.getEmail(),managers.getPassword()));
+			
 			
 		}
 		
@@ -180,8 +189,7 @@ public class AuthController {
 		System.out.println("outside");
 		
 		
-		user.setRoles(roles);
-		userRepository.save(user);
+		
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 	
@@ -441,19 +449,22 @@ public class AuthController {
 	    System.out.println(hangars.getPlaneallocated());
 	    
 	    if(hangars.getPlaneallocated()=="") {
-	    	System.out.println(" if");
+	    	
 	    	 Allocatedplanes planes2 = allocatedplanesRepository.findByHangarname(hangars.getHangarname());
 	    	 unallocatedplanesRepository.save(new Unallocatedplanes(planes2.getId(),planes2.getName(),planes2.getModel()));
 	    	 allocatedplanesRepository.delete(planes2);
 	    }
 	    
 	    else if(hangars.getPlaneallocated()!=null) {
-	    	System.out.println("Else if");
+	    try {	
 	    Unallocatedplanes planes1 = unallocatedplanesRepository.findByName(hangars.getPlaneallocated());
 	    allocatedplanesRepository.save(new Allocatedplanes(hangars.getId(),hangars.getHangarname(),planes1.getName(),planes1.getModel()));
 	    unallocatedplanesRepository.delete(planes1);
 	    }
-	    
+	    catch(NullPointerException e) {
+			System.out.println("NullPointerException thrown!");
+		}
+	    }
 	   
 	    
 	         
@@ -495,6 +506,40 @@ public class AuthController {
 	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 	    }
 
+	  }
+	  
+	  
+	  @GetMapping("/managers/{id}")
+	  public ResponseEntity<Managers> getManagersById(@PathVariable("id") long id) {
+	    Optional<Managers> managerData = managersRepository.findById(id);
+
+	    if (managerData.isPresent()) {
+	      return new ResponseEntity<>(managerData.get(), HttpStatus.OK);
+	    } else {
+	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	  }
+	 
+	 @PutMapping(value = "/managers/update")
+	  public Managers updateManagers(@RequestBody Managers managers) {
+	    System.out.println("into update"+managers.getId()+" "+managers.getFirstname());
+	    Managers manager = new Managers(managers.getId(),managers.getFirstname(),managers.getLastname(),managers.getAge(),managers.getGender(),managers.getPhonenumber(),managers.getUsername(),managers.getEmail(),managers.getPassword());
+	    userRepository.save(new User(managers.getId(),managers.getFirstname(),managers.getLastname(),managers.getAge(),managers.getGender(),managers.getPhonenumber(),managers.getUsername(),managers.getEmail(),managers.getPassword()));
+	    Managers manager1 = managersRepository.save(manager);
+	    return manager1;
+	  }
+	 
+	  @DeleteMapping("/managers/{id}")
+	  public ResponseEntity<HttpStatus> deleteManagers(@PathVariable("id") long id) {
+	    try {
+	    	
+	    	managersRepository.deleteById(id);
+	    	userRepository.deleteById(id);
+	    	
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
 	  }
 	  
 	  

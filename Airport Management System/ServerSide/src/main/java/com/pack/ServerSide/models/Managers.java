@@ -1,5 +1,8 @@
 package com.pack.ServerSide.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,7 +23,6 @@ import javax.validation.constraints.Size;
 public class Managers {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotBlank
@@ -55,6 +57,12 @@ public class Managers {
 	@NotBlank
 	@Size(max = 120)
 	private String password;
+	
+
+	
+
+
+	
 
 	public Long getId() {
 		return id;

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BoardAdminComponent } from '../board-admin/board-admin.component';
 import { Manager } from '../Manager';
+import { ManagersService } from '../_services/managers.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ManagersListComponent implements OnInit {
 
   togglemanager :boolean=true;
 
-  constructor(private userService: UserService, private router: Router, private listComponent: BoardAdminComponent) { }
+  constructor(private userService: UserService,private managersService:ManagersService, private router: Router, private listComponent: BoardAdminComponent) { }
 
   ngOnInit(): void {
   
@@ -28,15 +29,15 @@ export class ManagersListComponent implements OnInit {
 
   
 
-  editUser(manager: Manager): void{
+  editManagers(manager: Manager): void{
     console.log("into edit");
     console.log(manager.id);
     localStorage.setItem("id",manager.id.toString());
     this.router.navigate(["edit"]);
   }
 
-  deleteUser() {
-    this.userService.deleteUsers(this.manager.id)
+  deleteManagers() {
+    this.managersService.deleteManagers(this.manager.id)
       .subscribe(
         data => {
           console.log(data);

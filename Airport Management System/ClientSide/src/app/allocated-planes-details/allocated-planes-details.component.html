@@ -1,9 +1,10 @@
 <div *ngIf="allocatedplanes">
     <button type="button" (click)='toggleManager()'><b>Id:</b> {{ allocatedplanes.id }}</button>
-    <div [hidden]="togglemanager">
     <div>
         <label><b>Name:</b> </label> {{allocatedplanes.name}}
     </div>
+    <div [hidden]="togglemanager">
+   
     <div>
         <label><b>Model:</b> </label> {{allocatedplanes.model}}
     </div>

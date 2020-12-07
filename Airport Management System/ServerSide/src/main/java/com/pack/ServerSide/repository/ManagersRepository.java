@@ -8,4 +8,6 @@ import com.pack.ServerSide.models.Managers;
 @Repository
 public interface ManagersRepository extends JpaRepository<Managers, Long> {
 
+	void findByUsername(String username);
+
 }

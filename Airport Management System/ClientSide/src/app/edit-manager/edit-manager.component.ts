@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Manager } from '../Manager';
+import { ManagersService } from '../_services/managers.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { UserService } from '../_services/user.service';
 export class EditManagerComponent implements OnInit {
 
   manager: Manager = new Manager();
-  constructor(private userService: UserService, private router:Router) { }
+  constructor(private userService: UserService, private managersService:ManagersService, private router:Router) { }
 
   ngOnInit(): void {
     this.editManager();
@@ -19,7 +20,7 @@ export class EditManagerComponent implements OnInit {
 
   editManager(){
     let id=localStorage.getItem("id");
-    this.userService.getUsers(+id)
+    this.managersService.getManagers(+id)
     .subscribe(data=>{
       this.manager=data;
     })
@@ -27,7 +28,7 @@ export class EditManagerComponent implements OnInit {
 
   onUpdate(){
     console.log("into update");
-    this.userService.updateUsers(this.manager)
+    this.managersService.updateManagers(this.manager)
           .subscribe(data => {
      console.log(data);
      this.router.navigate(["admin"]);

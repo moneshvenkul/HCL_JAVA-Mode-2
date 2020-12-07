@@ -17,8 +17,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
-    let id=localStorage.getItem("id");
-    this.userService.getUsers(+id)
+    console.log(this.currentUser.id);
+    this.userService.getUsers(+this.currentUser.id)
     .subscribe(data=>{
       this.manager=data;
     })
