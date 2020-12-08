@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,7 @@ import com.pack.ServerSide.security.services.UserDetailsImpl;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+	private static final org.slf4j.Logger Logger= LoggerFactory.getLogger(AuthController.class);
 	@Autowired
 	AuthenticationManager authenticationManager;
 
@@ -125,16 +127,15 @@ public class AuthController {
 				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
 		
 		
-		System.out.println(signUpRequest.getFirstname());
+		Logger.info(signUpRequest.getFirstname());
 		String strRoles = signUpRequest.getRole();
-		System.out.println(strRoles);
+		Logger.info(strRoles);
 		
 		Set<Role> roles = new HashSet<>();
 		
-		System.out.println(strRoles);
 
 		if (strRoles == null) {
-			System.out.println("inside null");
+			Logger.info("inside null signup");
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
@@ -145,7 +146,7 @@ public class AuthController {
 			
 			
 		} else if (strRoles.equals("admin")) {
-			System.out.println("inside else");
+			Logger.info("inside else signup");
 			
 			Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -158,7 +159,7 @@ public class AuthController {
 			
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-			System.out.println("inside user "+strRoles);
+			Logger.info("inside user "+strRoles);
 			roles.add(userRole);
 			user.setRoles(roles);
 			User user1 =userRepository.save(user);
@@ -186,7 +187,7 @@ public class AuthController {
 //			}
 //		});
 //		
-		System.out.println("outside");
+		Logger.info("outside");
 		
 		
 		
@@ -235,8 +236,8 @@ public class AuthController {
 	 
 	 @PutMapping(value = "/users/update")
 	  public User updateUsers(@RequestBody User user) {
-	      System.out.println("Into update");
-	    System.out.println("into update"+user.getId()+" "+user.getFirstname());
+		 Logger.info("Into update");
+		 Logger.info("into update"+user.getId()+" "+user.getFirstname());
 	    User users = new User(user.getId(),user.getFirstname(),user.getLastname(),user.getAge(),user.getGender(),user.getPhonenumber(),user.getUsername(),user.getEmail(),user.getPassword(),user.getRoles());
 	         User user1 = userRepository.save(users);
 	    return user1;
@@ -310,8 +311,8 @@ public class AuthController {
 	 
 	 @PutMapping(value = "/planes/update")
 	  public Planes updatePlanes(@RequestBody Planes planes) {
-	      System.out.println("Into update");
-	    System.out.println("into update"+planes.getId()+" "+planes.getName());
+		 Logger.info("Into update");
+		 Logger.info("into update"+planes.getId()+" "+planes.getName());
 	    Planes plane = new Planes(planes.getId(),planes.getName(),planes.getModel());
 	         Planes plane1 = planesRepository.save(plane);
 	    return plane1;
@@ -375,8 +376,8 @@ public class AuthController {
 	 
 	 @PutMapping(value = "/pilots/update")
 	  public Pilots updatePilots(@RequestBody Pilots pilots) {
-	      System.out.println("Into update");
-	    System.out.println("into update"+pilots.getId()+" "+pilots.getPilotname());
+		 Logger.info("Into update");
+		 Logger.info("into update"+pilots.getId()+" "+pilots.getPilotname());
 	    Pilots pilot = new Pilots(pilots.getId(),pilots.getPilotname(),pilots.getModel());
 	         Pilots pilot1 = pilotsRepository.save(pilot);
 	    return pilot1;
@@ -441,12 +442,12 @@ public class AuthController {
 	 
 	 @PutMapping(value = "/hangars/update")
 	  public Hangars hangarsPlanes(@RequestBody Hangars hangars) {
-	      System.out.println("Into update");
-	    System.out.println("into update"+hangars.getId()+" "+hangars.getHangarname());
-	    System.out.println(hangars.getPlaneallocated());
+		 Logger.info("Into update");
+		 Logger.info("into update"+hangars.getId()+" "+hangars.getHangarname());
+		 Logger.info(hangars.getPlaneallocated());
 	    Hangars hangar = new Hangars(hangars.getId(),hangars.getHangarname(),hangars.getModel(),hangars.getPlaneallocated());
 	    Hangars hangar1 = hangarsRepository.save(hangar);
-	    System.out.println(hangars.getPlaneallocated());
+	    Logger.info(hangars.getPlaneallocated());
 	    
 	    if(hangars.getPlaneallocated()=="") {
 	    	
@@ -462,7 +463,7 @@ public class AuthController {
 	    unallocatedplanesRepository.delete(planes1);
 	    }
 	    catch(NullPointerException e) {
-			System.out.println("NullPointerException thrown!");
+	    	Logger.info("NullPointerException thrown!");
 		}
 	    }
 	   
@@ -522,7 +523,7 @@ public class AuthController {
 	 
 	 @PutMapping(value = "/managers/update")
 	  public Managers updateManagers(@RequestBody Managers managers) {
-	    System.out.println("into update"+managers.getId()+" "+managers.getFirstname());
+		 Logger.info("into update"+managers.getId()+" "+managers.getFirstname());
 	    Managers manager = new Managers(managers.getId(),managers.getFirstname(),managers.getLastname(),managers.getAge(),managers.getGender(),managers.getPhonenumber(),managers.getUsername(),managers.getEmail(),managers.getPassword());
 	    userRepository.save(new User(managers.getId(),managers.getFirstname(),managers.getLastname(),managers.getAge(),managers.getGender(),managers.getPhonenumber(),managers.getUsername(),managers.getEmail(),managers.getPassword()));
 	    Managers manager1 = managersRepository.save(manager);
