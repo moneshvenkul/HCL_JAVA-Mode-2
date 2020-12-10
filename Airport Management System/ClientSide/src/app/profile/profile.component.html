@@ -48,11 +48,12 @@
     {{ manager.phonenumber}}
   </p>
   <strong>Roles:</strong>
-  <ul>
-    <li *ngFor="let role of currentUser.roles">
-      {{ role }}
-    </li>
-  </ul>
+  <P *ngIf="currentUser.roles=='ROLE_ADMIN'">
+      ADMIN
+  </P>
+  <P *ngIf="currentUser.roles!='ROLE_ADMIN'">
+    MANAGER
+  </P>
 </div>
 </div>
 
